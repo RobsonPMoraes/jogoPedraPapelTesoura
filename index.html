@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+
+    <title>Pedra, Papel e Tesoura</title>
+    <meta charset="UTF-8">
+    <!-- link do fonts.google "Lato" -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+    
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="canonical" href="rosbondevs.com.br">
+        <meta name="robots" content="index, follow" >
+        <!-- SEO -->
+        <meta name="descrption" content="Rosbon.Devs - mais de 1 milhão de clientes em todo o mundo!" /> <!-- Esta meta apresenta o conteúdo como resultado quando seu site é pesquisado. -->
+        <meta name="keywords" content="desenvolvimento web, seo markenting, programação, java, c#, php, programação web e web3, rock, paper, scissor " >
+        <meta property="og:locale" content="pt-BR" >
+        <meta intemprop="name" content="Rosbon.Devs - Tecnologia para todos">
+        
+        <link rel="shortcut icon" href="favicon.png" type="image/png">
+    
+         <!-- Bootstrap CSS
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> -->
+
+    <!-- Font awesome -->
+    <script src="https://kit.fontawesome.com/88521eeecc.js" crossorigin="anonymous"></script>
+    
+        <!-- SMO - redes sociais -->
+        <meta property="og:title" content="Rosbon.Devs - Tecnologia para todos" />
+        <meta property="og:site_name" content="Rosbon.Devs" />
+        <meta property="og:descrption" content="Rosbon.Devs - Tecnologia para todos - Mais de um milhão de clientes em todo o mundo!" />
+        <meta property="og:url" content="https://rosbondevs.com.br" />
+        <meta property="og:image" content="https://rosbondevs.com.br/logo-img.jpg" /> <!-- a imagem que será apresentada como resposta às buscas -->
+        <meta property="og:image:type" content="image/jpeg" />
+   
+        <style>
+            *{
+                padding: 0;
+                margin: 0;
+                box-sizing: border-box;
+            }
+            .player-options img,
+            .enemy-options img {
+                max-width: 200px;
+                max-height: 150px;
+                opacity: 0.3;
+                cursor: pointer;
+            }    
+            .player-options,
+            .enemy-options {
+                width: 50%;
+            }    
+            .align {
+                display: flex;
+                width: 100%;
+                text-align: center;
+                margin: auto;
+            }    
+            h1 {
+                text-align: center;
+            }    
+            .titulo {
+                margin-top: 10px;
+                width: 100%;
+                text-align: center;
+                font-size: 50px;
+            }    
+            #msgV {
+                text-align: center;
+                font-size: 60px;
+            }    
+            @media screen (max-width: 768px and min-width: 300px) {
+                .titulo {
+                    margin-top: 10px;
+                    width: 100%;
+                    text-align: center;
+                    font-size: 30px;
+            }    
+            #msgV {
+                    text-align: center;
+                    font-size: 40px;
+                }
+            }
+            footer{
+                width: 100%;
+                position: fixed;
+                bottom: 0;
+                background-color: #666;
+                color: #fff;
+                line-height: 30px;
+            }
+            footer a{
+                color: #fff;
+            }
+        </style>
+
+</head>
+<body>
+   
+    <div class="msgs">
+        <h1 class="titulo">Pedra, papel ou tesoura!</h1>
+        <h2 id="msgV">Quem ganhará?</h2>
+    </div>
+    <hr>
+    <div class="align">
+        <div class="player-options">
+            <h1 id="jogador">Jogador</h1>
+            <div><img opt="pedra" src="/img/rock.png" /></div>
+            <div><img opt="papel" src="/img/paper.png" /></div>
+            <div><img opt="tesoura" src="/img/scisor.png" /></div>
+        </div>
+        <div class="enemy-options">
+            <h1>Computador</h1>
+            <div><img opt="pedra" src="/img/rock.png" /></div>
+            <div><img opt="papel" src="/img/paper.png" /></div>
+            <div><img opt="tesoura" src="/img/scisor.png" /></div>
+        </div>
+        <footer class="container w100">
+            &COPY; Direitos reservados <a href="https://rosbon.devs.com.br">RosbonDevs - Programação para todos!</a>
+        </footer>
+        <script>
+            var nome = prompt("Digite seu nome: ");
+
+            var jogador = document.querySelector("#jogador");
+            jogador.innerHTML = nome.toString(nome.value);
+            var msg = document.querySelector("#msgV");
+            var elementos = document.querySelectorAll('.player-options div > img');
+            var playerOpt = ""; // criando uma variavel que nos mostrará qual elemento será selecionado
+            var inimigoOpt = "";
+
+            function validarVitoria() {
+                if (playerOpt == "pedra" && inimigoOpt == "tesoura") {
+                    msg.innerHTML = `Parabéns ${nome}! Você ganhou.`;
+                    msg.style.color = "green";
+                } else if (playerOpt == "pedra" && inimigoOpt == "pedra") {
+                    msg.innerHTML = `Vocês empataram!`;
+                    msg.style.color = "orange";
+                } else if (playerOpt == "pedra" && inimigoOpt == "papel") {
+                    msg.innerHTML = `Que pena ${nome}, você perdeu!`;
+                    msg.style.color = "red";
+                }
+
+                if (playerOpt == "papel" && inimigoOpt == "pedra") {
+                    msg.innerHTML = `Parabéns ${nome}! Você ganhou.`;
+                    msg.style.color = "green";
+                } else if (playerOpt == "papel" && inimigoOpt == "papel") {
+                    msg.innerHTML = `Vocês empataram!`;
+                    msg.style.color = "orange";
+                } else if (playerOpt == "papel" && inimigoOpt == "tesoura") {
+                    msg.innerHTML = `Que pena ${nome}, você perdeu!`;
+                    msg.style.color = "red";
+                }
+
+                if (playerOpt == "tesoura" && inimigoOpt == "papel") {
+                    msg.innerHTML = `Parabéns ${nome}! Você ganhou.`;
+                    msg.style.color = "green";
+                } else if (playerOpt == "tesoura" && inimigoOpt == "tesoura") {
+                    msg.innerHTML = `Vocês empataram!`;
+                    msg.style.color = "orange";
+                } else if (playerOpt == "tesoura" && inimigoOpt == "pedra") {
+                    msg.innerHTML = `Que pena ${nome}, você perdeu!`;
+                    msg.style.color = "red";
+                }
+            }
+
+            function resetInimigo() {
+                const enemyOptions = document.querySelectorAll('.enemy-options div');
+
+                for (var i = 0; i < enemyOptions.length; i++) {
+                    enemyOptions[i].childNodes[0].style.opacity = 0.3;
+
+                }
+            }
+
+            function inimigoJogar() {
+                let rand = Math.floor(Math.random() * 3);
+                // MAth.floor - arredonda o número; MAth.ramdom - pega um número aleatório entre 0 e 1 e multiplica por 3
+
+                const enemyOptions = document.querySelectorAll('.enemy-options div');
+                resetInimigo();
+                for (var i = 0; i < enemyOptions.length; i++) {
+                    if (i == rand) {
+                        enemyOptions[i].childNodes[0].style.opacity = 1;
+                        inimigoOpt = enemyOptions[i].childNodes[0].getAttribute('opt');
+                    }
+                }
+
+                // alert(playerOpt);
+                // alert(inimigoOpt);
+
+                validarVitoria();
+            }
+
+            function resetOpacityPlayer() {
+                for (var i = 0; i < elementos.length; i++) {
+                    elementos[i].style.opacity = 0.3; // deixamos os elementos não selecionados com uma opacidade de 0.3
+
+                }
+            }
+
+            for (var i = 0; i < elementos.length; i++) {
+                elementos[i].addEventListener('click', function (t) {
+                    resetOpacityPlayer();
+                    t.target.style.opacity = 1; // selecionamos o elemento que queremos jogar
+                    playerOpt = t.target.getAttribute('opt') //chamamos a variavel que receberá o atributo de t.taget, ou seja, quando clicado sobre o elemento, mostrará seu nome.
+
+                    //    alert(playerOpt); // ao clicar sobre o elemento, mostra o nome dele, isso indica de que o comando está funcionante.
+
+                    inimigoJogar(); //chamo esta função para que meu inimigo jogue logo após de mim
+                });
+            }
+
+        </script>
+
+</body>
+</html>
